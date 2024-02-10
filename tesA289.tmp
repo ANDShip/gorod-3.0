@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpo4lcrjly1nt"]
+
+[ext_resource type="Texture2D" uid="uid://chgem8mbxcime" path="res://dom_1.png" id="1_fxp1k"]
+[ext_resource type="Script" path="res://test_house.gd" id="1_lfxv4"]
+[ext_resource type="Texture2D" uid="uid://bghanho8ewbi1" path="res://dom_1_shadow.png" id="2_hy1bo"]
+[ext_resource type="Texture2D" uid="uid://bq63cpu8hpx3" path="res://dom_1_chosen.png" id="4_0c143"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cga1e"]
+size = Vector2(735, 920)
+
+[node name="test_house" type="Area2D"]
+script = ExtResource("1_lfxv4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -1.43051e-06)
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_cga1e")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_hy1bo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_fxp1k")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_0c143")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-60, -80, -60, 81, 60, 81, 60, -80)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

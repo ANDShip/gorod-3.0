@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8yivcwhel170"]
+
+[ext_resource type="Script" path="res://pause_menu.gd" id="1_i8lnl"]
+
+[node name="pause_menu" type="Node2D"]
+script = ExtResource("1_i8lnl")
+
+[node name="Button" type="Button" parent="."]
+process_mode = 2
+offset_left = 150.0
+offset_top = 215.0
+offset_right = 1872.0
+offset_bottom = 435.0
+theme_override_font_sizes/font_size = 86
+text = "Resume"
+
+[node name="Button2" type="Button" parent="."]
+process_mode = 2
+offset_left = 93.0
+offset_top = 747.0
+offset_right = 1922.0
+offset_bottom = 1030.0
+theme_override_font_sizes/font_size = 106
+text = "Exit"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

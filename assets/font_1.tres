@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://cglur7dsxagmw"]
+
+[ext_resource type="FontFile" uid="uid://bkl77h8bajjjo" path="res://assets/ProtestRevolution-Regular.ttf" id="1_5a0pw"]
+
+[resource]
+base_font = ExtResource("1_5a0pw")
+opentype_features = {
+1667329140: 0
+}

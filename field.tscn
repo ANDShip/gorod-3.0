@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://civpik1554wd6"]
+
+[ext_resource type="Script" path="res://field.gd" id="1_r07bx"]
+[ext_resource type="Texture2D" uid="uid://4lawkxiagfpi" path="res://assets/Field_1_shadow.png" id="2_msqg7"]
+[ext_resource type="Texture2D" uid="uid://d3xrah16yxysn" path="res://assets/Field_1.png" id="3_xw0s2"]
+[ext_resource type="Texture2D" uid="uid://cwn4i5x6cxe3v" path="res://assets/work_signal_for_man.png" id="4_8jxr1"]
+[ext_resource type="Texture2D" uid="uid://c5tknx5ray7gj" path="res://assets/Field_1_choosen.png" id="5_35csp"]
+
+[node name="Field" type="Area2D"]
+script = ExtResource("1_r07bx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.2, 0.2)
+polygon = PackedVector2Array(-1255, -820, -205, -830, 1170, -810, 1220, -345, 1165, 230, 1100, 675, -1145, 765, -1315, 475, -1385, -25, -1360, -440)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_msqg7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_xw0s2")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-12, -18)
+scale = Vector2(6.9, 6.9)
+texture = ExtResource("4_8jxr1")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-18, -5)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(59, -159, 244, -155, 257, -112, 231, 142, -207, 160, -254, 58, -253, -68, -231, -162, -21, -159, -31, -147, -200, -129, -226, -66, -223, 55, -185, 131, 205, 110, 219, -90, 209, -130, 67, -149)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_35csp")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

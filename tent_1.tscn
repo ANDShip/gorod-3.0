@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://fs7fllydxsqa"]
+
+[ext_resource type="Script" path="res://tent_1.gd" id="1_008qd"]
+[ext_resource type="Texture2D" uid="uid://c2kqychftvl2h" path="res://assets/tent_1.png" id="2_35fn4"]
+[ext_resource type="Texture2D" uid="uid://w47qgenujt8q" path="res://assets/tent_1_shadow.png" id="3_7gnx1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1kdvr"]
+size = Vector2(200, 129)
+
+[node name="tent_1" type="Area2D"]
+script = ExtResource("1_008qd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_1kdvr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_35fn4")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_7gnx1")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-102, -64, 99, -66, 99, 64, -101, 65)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

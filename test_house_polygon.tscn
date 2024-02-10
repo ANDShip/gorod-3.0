@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://casvsnh1v2mdb"]
+
+[ext_resource type="Script" path="res://Polygon2D.gd" id="1_u0lph"]
+
+[node name="test_house_polygon" type="Polygon2D"]
+polygon = PackedVector2Array(-64, -84, 64, -84, 64, -26, 36, -26, 36, 27, 64, 27, 64, 85, -64, 85)
+script = ExtResource("1_u0lph")

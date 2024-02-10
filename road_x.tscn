@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=3 uid="uid://c71e27k416eiy"]
+
+[ext_resource type="Script" path="res://road_x.gd" id="1_d40di"]
+[ext_resource type="Texture2D" uid="uid://br1r85gcbipr7" path="res://assets/road_x.png" id="1_jho8x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gdku5"]
+size = Vector2(120, 386)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6j8vm"]
+size = Vector2(388, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5pg0j"]
+
+[node name="road_x" type="Area2D"]
+script = ExtResource("1_d40di")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -1)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_gdku5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_6j8vm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_jho8x")
+
+[node name="connector" type="Area2D" parent="."]
+position = Vector2(100, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="connector"]
+shape = SubResource("RectangleShape2D_5pg0j")
+
+[node name="ColorRect" type="ColorRect" parent="connector"]
+visible = false
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="connector2" type="Area2D" parent="."]
+position = Vector2(-100, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="connector2"]
+shape = SubResource("RectangleShape2D_5pg0j")
+
+[node name="ColorRect" type="ColorRect" parent="connector2"]
+visible = false
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="connector3" type="Area2D" parent="."]
+position = Vector2(0, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="connector3"]
+shape = SubResource("RectangleShape2D_5pg0j")
+
+[node name="ColorRect" type="ColorRect" parent="connector3"]
+visible = false
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="connector4" type="Area2D" parent="."]
+position = Vector2(0, -100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="connector4"]
+shape = SubResource("RectangleShape2D_5pg0j")
+
+[node name="ColorRect" type="ColorRect" parent="connector4"]
+visible = false
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]
+[connection signal="area_entered" from="connector" to="." method="_on_connector_area_entered"]
+[connection signal="area_exited" from="connector" to="." method="_on_connector_area_exited"]
+[connection signal="area_entered" from="connector2" to="." method="_on_connector_area_entered"]
+[connection signal="area_exited" from="connector2" to="." method="_on_connector_area_exited"]
+[connection signal="area_entered" from="connector3" to="." method="_on_connector_area_entered"]
+[connection signal="area_exited" from="connector3" to="." method="_on_connector_area_exited"]
+[connection signal="area_entered" from="connector4" to="." method="_on_connector_area_entered"]
+[connection signal="area_exited" from="connector4" to="." method="_on_connector_area_exited"]
