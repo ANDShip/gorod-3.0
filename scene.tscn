@@ -504,6 +504,20 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
+[node name="tent_1" type="Button" parent="CanvasLayer/Control/elements_scroll_container/elements_container"]
+visible = false
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "
+
+Tent №1"
+icon = ExtResource("11_6u2jh")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
 [node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Control"]
 custom_minimum_size = Vector2(120, 120)
 layout_mode = 0
@@ -566,6 +580,11 @@ offset_right = 51.0
 offset_bottom = 148.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -15000
+limit_top = -13000
+limit_right = 15000
+limit_bottom = 12000
+limit_smoothed = true
 script = ExtResource("4_l7tpp")
 
 [node name="Trees" type="Node2D" parent="."]
@@ -654,6 +673,7 @@ curve = SubResource("Curve2D_los3e")
 [connection signal="pressed" from="CanvasLayer/Control/elements_scroll_container/elements_container/road_2" to="." method="_on_road_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/elements_scroll_container/elements_container/well_1" to="." method="_on_well_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/elements_scroll_container/elements_container/market_1" to="." method="_on_market_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/elements_scroll_container/elements_container/tent_1" to="." method="_on_tent_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/TextureButton3" to="." method="_on_texture_button_3_pressed"]
 [connection signal="timeout" from="CanvasLayer/Sprite2D/Sprite2D/Timer" to="CanvasLayer/Sprite2D/Sprite2D" method="_on_timer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Sprite2D/Label/Clock" to="CanvasLayer/Sprite2D/Label/Clock" method="_on_timeout"]

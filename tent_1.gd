@@ -12,8 +12,10 @@ var prise = 100
 @onready var man = preload("res://man.tscn")
 @onready var man_button = preload("res://man_button.tscn")
 @onready var label = get_node("/root/scene/CanvasLayer/inf/Information/Label")
-@onready var sprite = get_node("/root/scene/CanvasLayer/inf")
+@onready var inf = get_node("/root/scene/CanvasLayer/inf")
+@onready var sprite = get_node("/root/scene/CanvasLayer/inf/Information")
 @onready var nav_region = get_node("/root/scene/region")
+@onready var house_polygon = preload("res://test_house_polygon.tscn")
 var possible_to_delete = false
 func _ready():
 	Global.is_obj_follow_mouse = true
@@ -22,7 +24,7 @@ func _process(delta):
 	if is_follow == false:
 		if Input.is_action_just_pressed("lkm"):
 			if possible_to_information == true:
-				sprite.visible = true
+				show_information()
 	if is_follow:
 		position = get_global_mouse_position()
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
@@ -96,3 +98,18 @@ func add_polygon():
 	nav_region.get_navigation_polygon().add_outline(new_polygon)
 	nav_region.get_navigation_polygon().make_polygons_from_outlines()
 
+func show_information():
+	sprite.get_node("Sell_Buy").visible = false
+	sprite.get_node("name").text = "House"
+	sprite.get_node("next").visible = false
+	sprite.get_node("information_1").visible = true
+	sprite.get_node("information_2").visible = true
+	sprite.get_node("information_1").text = "People: " 
+	sprite.get_node("information_2").text = "Seeds: " 
+	sprite.get_node("Button").visible = false
+	sprite.get_node("Label").visible = false
+	sprite.get_node("plus").visible = false
+	sprite.get_node("minus").visible = false
+	sprite.get_node("max").visible = false
+	sprite.get_node("cur_material").visible = false
+	inf.visible = true

@@ -17,6 +17,7 @@ var road_2 = preload("res://road_2.tscn")
 var x_road = preload("res://road_x.tscn")
 var well_1 = preload("res://well_1.tscn")
 var market_1 = preload("res://market_1.tscn")
+var tent_1 = preload("res://tent_1.tscn")
 var paused = false
 var button_sell_pressed = false
 
@@ -81,6 +82,13 @@ func inst_well_1():
 	$Enviroment.add_child(instance,true)
 	print(instance.name)
 	Global.roads.append(instance.name)
+	following_house = instance
+	
+func inst_tent_1():
+	var instance = tent_1.instantiate()
+	$Houses.add_child(instance,true)
+	print(instance.name)
+	Global.houses.append(instance.name)
 	following_house = instance
 	
 func _on_button_pressed():
@@ -201,62 +209,28 @@ func _on_texture_button_3_pressed():
 		$CanvasLayer/Control/Back_Button.visible = false
 
 func _on_houses_pressed():
-	$CanvasLayer/Control/elements_scroll_container.visible = true
-	
+	showing_buttons()
 	$CanvasLayer/Control/elements_scroll_container/elements_container/house_1.visible = true
 	$CanvasLayer/Control/elements_scroll_container/elements_container/house_g.visible = true
 	$CanvasLayer/Control/elements_scroll_container/elements_container/market_1.visible = true
-	$CanvasLayer/Control/elements_scroll_container/elements_container/field.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/road_1.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/road_2.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/road_x.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/well_1.visible = false
-	$CanvasLayer/Control/Back_Button.visible = true
-
-	$CanvasLayer/Control/menu_scroll_container.visible = false
+	$CanvasLayer/Control/elements_scroll_container/elements_container/tent_1.visible = true
 
 func _on_fields_pressed():
-	$CanvasLayer/Control/elements_scroll_container.visible = true
-	$CanvasLayer/Control/elements_scroll_container/elements_container/market_1.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/house_1.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/house_g.visible = false
+	showing_buttons()
 	$CanvasLayer/Control/elements_scroll_container/elements_container/field.visible = true
-	$CanvasLayer/Control/elements_scroll_container/elements_container/road_1.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/road_x.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/road_2.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/well_1.visible = false
-	$CanvasLayer/Control/Back_Button.visible = true
 
-	$CanvasLayer/Control/menu_scroll_container.visible = false
 
 
 func _on_roads_pressed():
-	$CanvasLayer/Control/elements_scroll_container.visible = true
-	$CanvasLayer/Control/elements_scroll_container/elements_container/market_1.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/house_1.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/house_g.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/field.visible = false
+	showing_buttons()
 	$CanvasLayer/Control/elements_scroll_container/elements_container/road_1.visible = true
 	$CanvasLayer/Control/elements_scroll_container/elements_container/road_x.visible = true
 	$CanvasLayer/Control/elements_scroll_container/elements_container/road_2.visible = true
-	$CanvasLayer/Control/elements_scroll_container/elements_container/well_1.visible = false
-	$CanvasLayer/Control/Back_Button.visible = true
 
-	$CanvasLayer/Control/menu_scroll_container.visible = false
 
 func _on_enviroment_pressed():
-	$CanvasLayer/Control/elements_scroll_container.visible = true
-	$CanvasLayer/Control/elements_scroll_container/elements_container/market_1.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/house_1.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/house_g.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/field.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/road_1.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/road_x.visible = false
-	$CanvasLayer/Control/elements_scroll_container/elements_container/road_2.visible = false
+	showing_buttons()
 	$CanvasLayer/Control/elements_scroll_container/elements_container/well_1.visible = true
-	$CanvasLayer/Control/Back_Button.visible = true
-
-	$CanvasLayer/Control/menu_scroll_container.visible = false
 
 
 func _on_back_button_pressed():
@@ -370,6 +344,13 @@ func _on_market_1_pressed():
 			is_following = true
 
 
+func _on_tent_1_pressed():
+	if !Global.delete_mode:
+		if Global.is_obj_follow_mouse == false:
+			Global.is_all_fields_blinking = false
+			inst_tent_1()
+			is_following = true
+
 func _on_plus_pressed():
 	market_aktion = "plus"
 
@@ -380,3 +361,19 @@ func _on_minus_pressed():
 
 func _on_max_pressed():
 	market_aktion = "max"
+
+func showing_buttons():
+	$CanvasLayer/Control/elements_scroll_container.visible = true
+	$CanvasLayer/Control/elements_scroll_container/elements_container/market_1.visible = false
+	$CanvasLayer/Control/elements_scroll_container/elements_container/house_1.visible = false
+	$CanvasLayer/Control/elements_scroll_container/elements_container/house_g.visible = false
+	$CanvasLayer/Control/elements_scroll_container/elements_container/field.visible = false
+	$CanvasLayer/Control/elements_scroll_container/elements_container/road_1.visible = false
+	$CanvasLayer/Control/elements_scroll_container/elements_container/road_x.visible = false
+	$CanvasLayer/Control/elements_scroll_container/elements_container/road_2.visible = false
+	$CanvasLayer/Control/elements_scroll_container/elements_container/well_1.visible = false
+	$CanvasLayer/Control/elements_scroll_container/elements_container/tent_1.visible = false
+	$CanvasLayer/Control/Back_Button.visible = true
+
+	$CanvasLayer/Control/menu_scroll_container.visible = false
+
