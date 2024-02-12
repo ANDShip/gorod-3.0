@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b25erle621ekn"]
+
+[ext_resource type="Script" path="res://rock_1.gd" id="1_f81ca"]
+[ext_resource type="Texture2D" uid="uid://72o34hgvv4ti" path="res://assets/rock_1.png" id="2_1wdvs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsrno"]
+size = Vector2(33.5, 27)
+
+[node name="rock_1" type="Area2D"]
+script = ExtResource("1_f81ca")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_1wdvs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, -0.5)
+shape = SubResource("RectangleShape2D_fsrno")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(-17, -13, -11, 13, 11, 13, 18, -8)

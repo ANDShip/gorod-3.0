@@ -37,6 +37,7 @@ func _process(delta):
 						Global.is_obj_follow_mouse = false
 						$Sprite2D2.visible = true
 						Global.houses_count += 1
+						create_man()
 					else:
 						print("no money")
 			else:
@@ -113,3 +114,17 @@ func show_information():
 	sprite.get_node("max").visible = false
 	sprite.get_node("cur_material").visible = false
 	inf.visible = true
+
+
+func create_man():
+	var instance_man = man.instantiate()
+	instance_man.position.x = position.x 
+	instance_man.position.y = position.y 
+	var people_p = get_node("/root/scene/People")
+	Global.all_mans.append(instance_man)
+	instance_man.name = str(Global.all_mans.size())
+	people_p.add_child(instance_man)
+	var man_button = man_button.instantiate()
+	container_cont.add_child(man_button)
+	man_button.text = str(Global.all_mans.size()) 
+	man_button.man_index = Global.all_mans.size()

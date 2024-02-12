@@ -72,7 +72,8 @@ func _process(delta):
 			if Global.is_mouse_on_window == false:
 				if Input.is_action_just_pressed("lkm"):
 					if possible_to_information == true:
-						show_information()
+						if inf.visible == false:
+							show_information()
 						
 	
 	if is_field_blink:
@@ -146,6 +147,7 @@ func _on_mouse_exited():
 	possible_to_work = false
 
 func _on_body_entered(body):
+	body.on_field = true
 	is_someone_working = true
 	#if number_of_workers == 0:
 	number_of_workers += 1

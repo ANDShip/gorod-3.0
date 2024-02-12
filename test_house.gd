@@ -8,6 +8,8 @@ var people = 0#1 + randi() % 3
 var seeds = 4 + randi() % 3
 var prise = 100
 var on_obj = false
+var house_sprite
+var house_sprite_texture
 @onready var container = get_node("/root/scene/CanvasLayer/ScrollContainer2")
 @onready var container_cont = get_node("/root/scene/CanvasLayer/ScrollContainer2/VBoxContainer2")
 @onready var scene = get_node("/root/scene")
@@ -18,10 +20,26 @@ var on_obj = false
 @onready var sprite = get_node("/root/scene/CanvasLayer/inf/Information")
 @onready var nav_region = get_node("/root/scene/region")
 @onready var house_polygon = preload("res://test_house_polygon.tscn")
+var bu = randi() % 2
 var possible_to_delete = false
 func _ready():
 	Global.is_obj_follow_mouse = true
 	
+	if bu == 0:
+		house_sprite = load("res://assets/dom_1.png")
+		$Sprite2D.texture = house_sprite
+		#$Sprite2D.scale = Vector2(0.2,0.2)
+	elif bu == 1:
+		$CollisionShape2D.disabled = true
+		$CollisionShape2D2.disabled = false
+		house_sprite = load("res://assets/house_3.png")
+		house_sprite_texture = load("res://assets/house_3_shadow.png")
+		$Sprite2D.texture = house_sprite
+		$Sprite2D.scale = Vector2(0.1,0.1)
+		$Sprite2D2.texture = house_sprite_texture
+		$Sprite2D2.scale = Vector2(0.1,0.1)
+		$Sprite2D3.texture = load("res://assets/house_3_choosen.png")
+		$Sprite2D3.scale = Vector2(0.1,0.1)
 func _process(delta):
 	
 	if Global.is_mouse_on_window == false:
@@ -39,13 +57,15 @@ func _process(delta):
 		if Global.is_mouse_on_window == false:
 			if Input.is_action_just_pressed("lkm"):
 				if possible_to_information == true:
-					show_information()
+					if inf.visible == false:
+						show_information()
 	if is_follow:
 		position = get_global_mouse_position()
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			if entered_houses == 0:
 				if scene.is_button_on_mouse == false:
 					if Global.money >= prise:
+						
 						Global.money -= prise
 						add_polygon()
 						is_follow = false
@@ -53,7 +73,7 @@ func _process(delta):
 						$Sprite2D2.visible = true
 						Global.houses_count += 1
 						var m = -60
-						create_man(m)
+						#create_man(m)
 					else:
 						print("no money")
 			else:
@@ -107,8 +127,14 @@ func _on_mouse_exited():
 
 func add_polygon():
 	var new_polygon : PackedVector2Array
-	var polygon_transform = $Polygon2D.get_global_transform()
-	var polygon_bp = $Polygon2D.get_polygon()
+	var polygon_transform 
+	var polygon_bp
+	if bu == 0:
+		polygon_transform = $Polygon2D.get_global_transform()
+		polygon_bp = $Polygon2D.get_polygon()
+	elif bu == 1:
+		polygon_transform = $Polygon2D2.get_global_transform()
+		polygon_bp = $Polygon2D2.get_polygon()
 	#print(transform.basis)
 	for vertex in polygon_bp:
 		#new_polygon.append((polygon_transform * Vector2((vertex.x - 444),(vertex.y - 303)) ))

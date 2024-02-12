@@ -33,8 +33,8 @@ func _process(delta):
 						#add_polygon()
 						is_follow = false
 						Global.is_obj_follow_mouse = false
-						#$Sprite2D2.visible = true
-						Global.houses_count += 1
+						$Sprite2D2.visible = true
+						#Global.houses_count += 1
 						if cnkt != null:
 							position = cnkt
 							cnkt = null
@@ -45,10 +45,10 @@ func _process(delta):
 				print("zanyato")
 		
 		if Input.is_action_just_pressed("rotate_left"):
-			rotation -= deg_to_rad(45)
+			rotation_degrees -= 45
 			print(delta)
 		if Input.is_action_just_pressed("rotate_right"):
-			rotation += deg_to_rad(45)
+			rotation_degrees += 45
 			print(rotation)
 			
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
@@ -118,9 +118,11 @@ func _on_area_2d_area_entered(area):
 		#print(area.get_child(0))
 		if area.name != "l_area":
 			if area.name != "r_area":
+				print("eeeee", area.name)
 				areaaa = area
 				for obj in Global.all_obj_names:
 					if obj in area.name:
+						print("entered_obj + 1")
 						entered_obj += 1
 			else:
 				connected = true
@@ -145,9 +147,10 @@ func _on_area_2d_area_exited(area):
 func _on_connector_area_entered(area):
 	if is_follow:
 		if "connector" in area.name:
-			cnkt = area.get_parent().position
-			var pipi = (-(area.get_parent().global_position - area.global_position))*2
-			cnkt += pipi
+			if area.rotation_degrees == rotation_degrees or (area.rotation_degrees + 180)  == rotation_degrees or (area.rotation_degrees - 180)  == rotation_degrees or (area.rotation_degrees + 90)  == rotation_degrees or (area.rotation_degrees - 90)  == rotation_degrees:
+				cnkt = area.get_parent().position
+				var pipi = (-(area.get_parent().global_position - area.global_position))*2
+				cnkt += pipi
 
 
 func _on_connector_area_exited(area):

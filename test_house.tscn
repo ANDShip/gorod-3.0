@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpo4lcrjly1nt"]
+[gd_scene load_steps=7 format=3 uid="uid://dpo4lcrjly1nt"]
 
 [ext_resource type="Script" path="res://test_house.gd" id="1_lfxv4"]
 [ext_resource type="Texture2D" uid="uid://bghanho8ewbi1" path="res://assets/dom_1_shadow.png" id="2_cpk6d"]
@@ -8,6 +8,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cga1e"]
 size = Vector2(620, 815)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0flk4"]
+size = Vector2(270, 155)
+
 [node name="test_house" type="Area2D"]
 script = ExtResource("1_lfxv4")
 
@@ -15,6 +18,7 @@ script = ExtResource("1_lfxv4")
 position = Vector2(-2.5034e-06, 0.500001)
 scale = Vector2(0.4, 0.4)
 shape = SubResource("RectangleShape2D_cga1e")
+debug_color = Color(0.976471, 0, 0.403922, 1)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 visible = false
@@ -32,9 +36,19 @@ color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(-64, -84, -64, 85, 64, 85, 64, -20.9546, 41.0526, -21.0526, 41.0526, -53.6842, 64, -53.2821, 64, -84)
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
+visible = false
 z_index = 2
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_bq0p2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_0flk4")
+disabled = true
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(-135, -78, -38, -77, -38, -25, 39, -25, 38, -77, 135, -77, 136, 77, -135, 78)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

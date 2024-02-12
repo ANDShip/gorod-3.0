@@ -30,11 +30,12 @@ func _process(delta):
 				if scene.is_button_on_mouse == false:
 					if Global.money >= prise:
 						Global.money -= prise
-
+						$Sprite2D2.visible = true
 						Global.is_obj_follow_mouse = false
-						Global.houses_count += 1
+						#Global.houses_count += 1
 						#add_polygon()
 						is_follow = false
+						print("cnkt ",cnkt)
 						if cnkt != null:
 							position = cnkt
 							cnkt = null
@@ -45,10 +46,10 @@ func _process(delta):
 				print("zanyato")
 		
 		if Input.is_action_just_pressed("rotate_left"):
-			rotation -= deg_to_rad(45)
+			rotation_degrees -= 45
 			print(delta)
 		if Input.is_action_just_pressed("rotate_right"):
-			rotation += deg_to_rad(45)
+			rotation_degrees += 45
 			print(rotation)
 			
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
@@ -159,11 +160,13 @@ func _on_area_2d_area_exited(area):
 func _on_area_2d_2_area_entered(area):
 	if is_follow:
 		if "connector" in area.name:
-			if area.rotation == rotation:
+			print("popa ",area.get_parent().rotation_degrees,"  ",rotation_degrees)
+			if area.get_parent().rotation_degrees == rotation_degrees or (area.get_parent().rotation_degrees + 180)  == rotation_degrees or (area.get_parent().rotation_degrees - 180)  == rotation_degrees or (area.get_parent().rotation_degrees + 90)  == rotation_degrees or (area.get_parent().rotation_degrees - 90)  == rotation_degrees:
+				
 				cnkt = area.get_parent().position
 				var pipi = (-(area.get_parent().global_position - area.global_position))*2
 				cnkt += pipi
-
+				print("cnkt ",cnkt)
 
 func _on_connector_area_exited(area):
 	if is_follow:

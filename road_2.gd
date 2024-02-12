@@ -32,7 +32,7 @@ func _process(delta):
 						Global.money -= prise
 
 						Global.is_obj_follow_mouse = false
-						Global.houses_count += 1
+						#Global.houses_count += 1
 						#add_polygon()
 						is_follow = false
 						if cnkt != null:

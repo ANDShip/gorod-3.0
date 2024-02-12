@@ -10,6 +10,7 @@ var market_aktion = "none"
 @onready var pause_menu = $CanvasLayer/pause_menu
 var selected_item_sell_buy = null
 var house_1 = preload("res://test_house.tscn")
+var tree_1 = preload("res://tree.tscn")
 var g_house = preload("res://g_house.tscn")
 var field_1 = preload("res://field.tscn")
 var road = preload("res://road_1.tscn")
@@ -18,12 +19,31 @@ var x_road = preload("res://road_x.tscn")
 var well_1 = preload("res://well_1.tscn")
 var market_1 = preload("res://market_1.tscn")
 var tent_1 = preload("res://tent_1.tscn")
+var rock_1 = preload("res://rock_1.tscn")
+var rock_2 = preload("res://rock_2.tscn")
+var man_1 = preload("res://man.tscn")
 var paused = false
 var button_sell_pressed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	for i in 100:
+		var instance = tree_1.instantiate()
+		$Trees.add_child(instance,true)
+		var randx = randi_range(-15000,15000)
+		var randy = randi_range(-15000,15000)
+		instance.global_position = Vector2(randx,randy)
+	for i in 100:
+		var pio = randi() % 2
+		var instance
+		if pio == 0:
+			instance = rock_1.instantiate()
+		elif pio == 1:
+			instance = rock_2.instantiate()
+		$Rocks.add_child(instance,true)
+		var randx = randi_range(-15000,15000)
+		var randy = randi_range(-15000,15000)
+		instance.global_position = Vector2(randx,randy)
 
 func inst_house():
 	var instance = house_1.instantiate()
@@ -305,6 +325,7 @@ func _on_button_inform_pressed():
 	$CanvasLayer/inf.visible = false
 	#cur_crop_type = "null"
 	start_working = false
+	$CanvasLayer/inf/Information/Sell_Buy.deselect_all()
 
 func _on_inf_mouse_entered():
 	Global.is_mouse_on_window = true
@@ -377,3 +398,11 @@ func showing_buttons():
 
 	$CanvasLayer/Control/menu_scroll_container.visible = false
 
+
+
+func _on_button_4_pressed():
+	if !Global.delete_mode:
+		var instance = man_1.instantiate()
+		instance.global_position = Vector2(10000,750)
+		instance.is_going_str = true
+		$People.add_child(instance,true)

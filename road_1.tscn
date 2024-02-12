@@ -1,16 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3xhm4qcfbixv"]
+[gd_scene load_steps=7 format=3 uid="uid://b3xhm4qcfbixv"]
 
 [ext_resource type="Script" path="res://road_1.gd" id="1_vstqv"]
 [ext_resource type="Texture2D" uid="uid://4v8xcdu2wkqo" path="res://assets/road_1.png" id="2_t5yup"]
+[ext_resource type="Texture2D" uid="uid://blvh6ibucrour" path="res://assets/road_1_shadow.png" id="3_ahj8r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7dkt"]
 size = Vector2(17, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dprce"]
-size = Vector2(382, 149.5)
+size = Vector2(400, 149.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tx4qf"]
-size = Vector2(39.75, 28)
+size = Vector2(18, 20)
 
 [node name="road_1" type="Area2D"]
 script = ExtResource("1_vstqv")
@@ -47,9 +48,14 @@ offset_bottom = 9.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(0, -1)
-scale = Vector2(0.1, 0.1)
+position = Vector2(0, -5.96046e-08)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_t5yup")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_ahj8r")
 
 [node name="road" type="Area2D" parent="."]
 
@@ -92,3 +98,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="area_entered" from="connector" to="." method="_on_area_2d_2_area_entered"]
 [connection signal="area_exited" from="connector" to="." method="_on_connector_area_exited"]
 [connection signal="area_entered" from="connector2" to="." method="_on_area_2d_2_area_entered"]
+[connection signal="area_exited" from="connector2" to="." method="_on_connector_area_exited"]

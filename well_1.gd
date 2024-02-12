@@ -33,7 +33,7 @@ func _process(delta):
 						is_follow = false
 						Global.is_obj_follow_mouse = false
 						$Sprite2D2.visible = true
-						Global.houses_count += 1
+						#Global.houses_count += 1
 					else:
 						print("no money")
 			else:

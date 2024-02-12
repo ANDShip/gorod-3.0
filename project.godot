@@ -23,7 +23,7 @@ Global="*res://global.tscn"
 
 window/size/viewport_width=1980
 window/size/viewport_height=1080
-window/size/mode=3
+window/size/initial_position=Vector2i(0, 515)
 
 [gui]
 
@@ -81,10 +81,19 @@ r={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":82,"key_label":0,"unicode":114,"echo":false,"script":null)
 ]
 }
+mkm={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":4,"position":Vector2(162, 25),"global_position":Vector2(166, 66),"factor":1.0,"button_index":3,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
 
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[physics]
+
+common/physics_ticks_per_second=145
 
 [rendering]
 

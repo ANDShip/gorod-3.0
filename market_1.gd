@@ -43,13 +43,20 @@ func _process(delta):
 					sprite.get_node("cur_material").text = str(minus)
 					scene.cur_wheat_to_sell -= 10
 				scene.market_aktion = "none"
+			if scene.market_aktion == "max":
+				var max = Global.wheat
+				
+				sprite.get_node("cur_material").text = str(max)
+				scene.cur_wheat_to_sell = max
+				scene.market_aktion = "none"
 	
 	if is_follow == false:
 		if Global.is_all_fields_blinking == false:
 			if Global.is_mouse_on_window == false:
 				if Input.is_action_just_pressed("lkm"):
 					if possible_to_information == true:
-						show_information()
+						if inf.visible == false:
+							show_information()
 	if is_follow:
 		position = get_global_mouse_position()
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):

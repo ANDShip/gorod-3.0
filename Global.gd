@@ -6,7 +6,7 @@ var roads = []
 var delete_mode = false
 
 
-var money = 1000
+var money = 10000
 var wheat = 0
 
 
